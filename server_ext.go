@@ -1,4 +1,4 @@
-package ocgrpc
+package wrapper
 
 import (
 	"go.opencensus.io/trace"
