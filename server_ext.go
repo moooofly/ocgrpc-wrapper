@@ -1,13 +1,14 @@
 package wrapper
 
 import (
+	"go.opencensus.io/plugin/ocgrpc"
 	"go.opencensus.io/trace"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc/stats"
 )
 
 type ServerExtHandler struct {
-	sh *ServerHandler
+	sh *ocgrpc.ServerHandler
 	si *ServerCustomInfo
 }
 
@@ -16,7 +17,7 @@ var _ stats.Handler = (*ServerExtHandler)(nil)
 func NewServerExtHandler(in *ServerCustomInfo) *ServerExtHandler {
 	return &ServerExtHandler{
 		si: in,
-		sh: &ServerHandler{},
+		sh: &ocgrpc.ServerHandler{},
 	}
 }
 

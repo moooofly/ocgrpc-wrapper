@@ -1,20 +1,21 @@
 package wrapper
 
 import (
+	"go.opencensus.io/plugin/ocgrpc"
 	"go.opencensus.io/trace"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc/stats"
 )
 
 type ClientExtHandler struct {
-	ch *ClientHandler
+	ch *ocgrpc.ClientHandler
 	ci *ClientCustomInfo
 }
 
 func NewClientExtHandler(in *ClientCustomInfo) *ClientExtHandler {
 	return &ClientExtHandler{
 		ci: in,
-		ch: &ClientHandler{
+		ch: &ocgrpc.ClientHandler{
 			StartOptions: trace.StartOptions{
 				Sampler: in.Sampler,
 			},
